@@ -30,43 +30,43 @@ namespace LINQ_Practice
         [TestMethod]
         public void DoAnyCohortsHavePrimaryInstructorsBornIn1980s()
         {
-            var doAny = PracticeData/*FILL IN LINQ EXPRESSION*/;
-            Assert.IsTrue(false); //<-- change false to doAny
+            var doAny = PracticeData.Any(c => { int year = c.PrimaryInstructor.Birthday.Year; return year < 1990 && year > 1979; });
+            Assert.IsTrue(doAny); 
         }
 
         [TestMethod]
         public void DoAnyCohortsHaveActivePrimaryInstructors()
         {
-            var doAny = PracticeData/*FILL IN LINQ EXPRESSION*/;
-            Assert.IsTrue(false); //<-- change false to doAny
+            var doAny = PracticeData.Any(c => { return c.PrimaryInstructor.Active; });
+            Assert.IsTrue(doAny); 
         }
 
         [TestMethod]
         public void DoAnyActiveCohortsHave3JuniorInstructors()
         {
-            var doAny = PracticeData/*FILL IN LINQ EXPRESSION*/;
-            Assert.IsTrue(false); //<-- change false to doAny
+            var doAny = PracticeData.Any(c => { return c.Active && c.JuniorInstructors.Count == 3; });
+            Assert.IsTrue(doAny); 
         }
 
         [TestMethod]
         public void AreAnyCohortsBothFullTimeAndNotActive()
         {
-            var doAny = PracticeData/*FILL IN LINQ EXPRESSION*/;
-            Assert.IsTrue(false); //<-- change false to doAny
+            var doAny = PracticeData.Any(c => { return !c.Active && c.FullTime; });
+            Assert.IsTrue(doAny); 
         }
 
         [TestMethod]
         public void AreAnyStudentsInCohort3NotActiveAndBornInOctober()
         {
-            var doAny = PracticeData/*FILL IN LINQ EXPRESSION*/;  //HINT: Cohort3 is PracticeData[2]
-            Assert.IsFalse(true); //<-- change true to doAny
+            var doAny = PracticeData[2].Students.Any(s => { return !s.Active && s.Birthday.Month == 10; });
+            Assert.IsFalse(doAny); 
         }
 
         [TestMethod]
         public void AreAnyJuniorInstructorsInCohort4NotActive()
         {
-            var doAny = PracticeData/*FILL IN LINQ EXPRESSION*/;  //HINT: Cohort4 is PracticeData[3]
-            Assert.IsFalse(true); //<-- change true to doAny
+            var doAny = PracticeData[3].JuniorInstructors.Any(j => { return !j.Active; });
+            Assert.IsFalse(doAny);
         }
     }
 }

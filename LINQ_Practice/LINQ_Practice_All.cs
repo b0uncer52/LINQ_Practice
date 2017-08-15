@@ -30,43 +30,43 @@ namespace LINQ_Practice
         [TestMethod]
         public void DoAllCohortsHaveTwoOrMoreJuniorInstructors()
         {
-            var doAll = PracticeData/*FILL IN LINQ EXPRESSION*/;
-            Assert.IsTrue(false); //<-- change false to doAll
+            var doAll = PracticeData.All(c => { return c.JuniorInstructors.Count >= 2; });
+            Assert.IsTrue(doAll); 
         }
 
         [TestMethod]
         public void DoAllCohortsFiveStudents()
         {
-            var doAll = PracticeData/*FILL IN LINQ EXPRESSION*/;
-            Assert.IsTrue(false); //<-- change false to doAll
+            var doAll = PracticeData.All(c => { return c.Students.Count == 5; });
+            Assert.IsTrue(doAll);
         }
 
         [TestMethod]
         public void DoAllCohortsHavePrimaryInstructorsBornIn1980s()
         {
-            var doAll = PracticeData/*FILL IN LINQ EXPRESSION*/;
-            Assert.IsFalse(true); //<-- change true to doAll
+            var doAll = PracticeData.All(c => { return c.PrimaryInstructor.Birthday.Year > 1979 && c.PrimaryInstructor.Birthday.Year < 1990; });
+            Assert.IsFalse(doAll); 
         }
 
         [TestMethod]
         public void DoAllCohortsHaveActivePrimaryInstructors()
         {
-            var doAll = PracticeData/*FILL IN LINQ EXPRESSION*/;
-            Assert.IsTrue(true); //<-- change true to doAll
+            var doAll = PracticeData.All(c => { return c.PrimaryInstructor.Active; });
+            Assert.IsTrue(doAll); 
         }
 
         [TestMethod]
         public void DoAllStudentsInCohort1HaveFirstNamesThatContainTheLetterE()
         {
-            var doAll = PracticeData/*FILL IN LINQ EXPRESSION*/; //Hint: Cohort1 would be PracticeData[0]
-            Assert.IsTrue(false); //<-- change false to doAll
+            var doAll = PracticeData[0].Students.All(s => { return s.FirstName.ToUpper().Contains("E"); }); 
+            Assert.IsTrue(doAll); 
         }
 
         [TestMethod]
         public void DoAllActiveCohortsHavePrimaryInstructorsWithFirstNamesThatContainTheLetterA()
         {
-            var doAll = PracticeData/*FILL IN LINQ EXPRESSION*/;
-            Assert.IsFalse(false); //<-- change false to doAll
+            var doAll = PracticeData.FindAll(c => { return c.Active; }).All(c => { return c.PrimaryInstructor.FirstName.ToUpper().Contains("A"); });
+            Assert.IsFalse(doAll); 
         }
     }
 }
